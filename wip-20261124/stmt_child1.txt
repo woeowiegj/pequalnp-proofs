@@ -1,0 +1,8 @@
+∀ (C : PEqualNP.CircuitLowerBounds.Circuit),
+    PEqualNP.MetaComplexity.FanInTwo C →
+    C.gates.countP (fun g => !(g.op.eval [false])) ≤ 15 →
+    ∃ x : Fin 10 → Bool, C.eval (List.ofFn x) ≠
+      (fun x : Fin 10 → Bool =>
+        x 0 && x 1 || x 1 && x 2 || x 2 && x 3 || x 3 && x 4 || x 4 && x 0 ||
+        x 0 && x 5 || x 1 && x 6 || x 2 && x 7 || x 3 && x 8 || x 4 && x 9 ||
+        x 5 && x 7 || x 7 && x 9 || x 9 && x 6 || x 6 && x 8 || x 8 && x 5) x
